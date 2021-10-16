@@ -9,6 +9,7 @@ package main.java.com.fedorov.packageService.impl;
 
 import main.java.com.fedorov.dto.Package;
 import main.java.com.fedorov.packageService.PackageService;
+import main.java.com.fedorov.util.DistinctUtil;
 import main.java.com.fedorov.validator.Validator;
 import main.java.com.fedorov.validator.impl.ValidatorImpl;
 
@@ -47,5 +48,20 @@ public class PackageServiceImpl implements PackageService {
 
     protected boolean isCurPackageConsistOfInVisitPackage(Package curPackage, List<Package> visitPackage) {
         return visitPackage.contains(curPackage);
+    }
+
+
+    @Override
+    public List<Package> getCompilationOrder(List<Package> packages) {
+        List<Package> orderPackages = getCompilationOrderRekursia(packages, new ArrayList<Package>());
+        orderPackages = DistinctUtil.task1(orderPackages);
+        return orderPackages;
+    }
+
+    private List<Package> getCompilationOrderRekursia(List<Package> packages, List<Package> orderPackages) {
+        List<Package> nextPackages = new ArrayList<>();
+        packages.forEach(item -> nextPackages.add(item));
+        orderPackages.addAll(nextPackages);
+        return nextPackages.size() == 0 ? orderPackages : getCompilationOrderRekursia(nextPackages, orderPackages);
     }
 }

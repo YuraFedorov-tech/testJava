@@ -14,6 +14,8 @@ import org.junit.Test;
 
 import java.util.List;
 
+import static test.java.util.CreatePackagesUtil.given;
+
 public class PackageServiceImplHasCircularDependesyTest extends PackageServiceImpl {
     @Test
     public void testisCurPackageConsistOfInVisitPackage() {
@@ -24,22 +26,7 @@ public class PackageServiceImplHasCircularDependesyTest extends PackageServiceIm
         Assert.assertEquals(false, actual);
     }
 
-    private List<Package> given(String... names) {
-        Package root = new Package("root");
-        //    List<Package> packages =
-        givenPackagesRekur(0, names, root);
-        return root.getDependencies();
-    }
 
-    private //List<Package>
-    void
-    givenPackagesRekur(int count, String[] names, Package curPackage) {
-        if (count == names.length)
-            return;
-        Package aPackage = new Package(names[count]);
-        curPackage.getDependencies().add(aPackage);
-        givenPackagesRekur(count + 1, names, aPackage);
-    }
 
 
     /**

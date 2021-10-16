@@ -23,7 +23,7 @@ public class Project {
     private final List<Package> packages = new ArrayList<>();
 
     // наличие этого сервиса и его методов нарушает принцип единной ответсвенности SOLID
-    private PackageService packageService=new PackageServiceImpl();
+    private PackageService packageService = new PackageServiceImpl();
 
     public Project(String name) {
         this.name = name;
@@ -45,7 +45,7 @@ public class Project {
      * * при зависимостях A->B->D->B – цикл есть
      */
     public Boolean hasCyclicDependencies() {
-        return  packageService.hasCyclicDependencies(packages);
+        return packageService.hasCyclicDependencies(packages);
     }
 
     /**
@@ -55,8 +55,11 @@ public class Project {
      * порядок компиляции может быть C, B, A, D или C, D, B, A или C, B, D, A
      */
     public List<Package> getCompilationOrder() {
-
-        return null;
+        // эта проверка должна находиться в другом месте, где то выше
+        if (hasCyclicDependencies()) {
+            throw new IllegalArgumentException("Есть циклические зависимости");
+        }
+        return packageService.getCompilationOrder(packages);
     }
 }
 
