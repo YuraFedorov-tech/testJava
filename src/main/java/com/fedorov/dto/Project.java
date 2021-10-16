@@ -7,6 +7,9 @@ package main.java.com.fedorov.dto;
  *
  */
 
+import main.java.com.fedorov.packageService.PackageService;
+import main.java.com.fedorov.packageService.impl.PackageServiceImpl;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,6 +21,9 @@ public class Project {
     private final String name;
     //список пакетов проекта
     private final List<Package> packages = new ArrayList<>();
+
+    // наличие этого сервиса и его методов нарушает принцип единной ответсвенности SOLID
+    private PackageService packageService=new PackageServiceImpl();
 
     public Project(String name) {
         this.name = name;
@@ -33,8 +39,13 @@ public class Project {
      * <p>
      * Обращаем ваше внимание, что в packages у проекта не обязательно находятся все пакеты. В данном примере там находится только один пакет A.
      */
+    /**
+     * Добавленно неявное условие:
+     * при зависимостях A->A – цикл есть
+     * * при зависимостях A->B->D->B – цикл есть
+     */
     public Boolean hasCyclicDependencies() {
-        return false;
+        return  packageService.hasCyclicDependencies(packages);
     }
 
     /**
