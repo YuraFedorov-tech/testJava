@@ -1,11 +1,5 @@
 package main.java.com.fedorov.dto;
-/*
- *
- *@Data 16.10.2021
- *@autor Fedorov Yuri
- *@project testJava
- *
- */
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,13 +8,13 @@ import java.util.Objects;
 /**
  * Класс для хранения информации о пакетах и их зависимостях.
  */
-public class Package{
+public class Package {
     //уникальное имя пакета
     private final String name;
     //список пакетов, от которых зависит данный
     private final List<Package> dependencies = new ArrayList<>();
 
-    public Package(String name)  {
+    public Package(String name) {
         this.name = name;
     }
 
@@ -28,7 +22,7 @@ public class Package{
         return dependencies;
     }
 
-    public String getName(){
+    public String getName() {
         return name;
     }
 
