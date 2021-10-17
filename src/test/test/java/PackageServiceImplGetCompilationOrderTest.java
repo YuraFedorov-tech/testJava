@@ -35,7 +35,6 @@ public class PackageServiceImplGetCompilationOrderTest extends PackageServiceImp
         List<Package> packages = given("a", "b", "c", "d");
         packages.get(0).getDependencies().get(0).getDependencies().addAll(given("e", "t", "c"));
         fillLastStepEveryPackage(0, packages);
-        System.out.println(packages);
         String expected = "{Package{name='a'}=0, Package{name='b'}=1, Package{name='c'}=4, Package{name='t'}=3, Package{name='d'}=3, Package{name='e'}=2}";
         Assert.assertEquals(expected, lastSteps.toString());
     }
