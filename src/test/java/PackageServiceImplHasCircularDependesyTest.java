@@ -1,11 +1,5 @@
 package test.java;
-/*
- *
- *@Data 16.10.2021
- *@autor Fedorov Yuri
- *@project testJava
- *
- */
+
 
 import main.java.com.fedorov.dto.Package;
 import main.java.com.fedorov.packageService.impl.PackageServiceImpl;
@@ -25,8 +19,6 @@ public class PackageServiceImplHasCircularDependesyTest extends PackageServiceIm
         actual = isCurPackageConsistOfInVisitPackage(new Package("aaaa"), packages);
         Assert.assertEquals(false, actual);
     }
-
-
 
 
     /**
@@ -71,6 +63,4 @@ public class PackageServiceImplHasCircularDependesyTest extends PackageServiceIm
         actual = hasCyclicDependencies(packages);
         Assert.assertEquals(true, actual);
     }
-
-
 }

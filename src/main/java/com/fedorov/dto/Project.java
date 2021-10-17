@@ -1,11 +1,5 @@
 package main.java.com.fedorov.dto;
-/*
- *
- *@Data 16.10.2021
- *@autor Fedorov Yuri
- *@project testJava
- *
- */
+
 
 import main.java.com.fedorov.packageService.PackageService;
 import main.java.com.fedorov.packageService.impl.PackageServiceImpl;

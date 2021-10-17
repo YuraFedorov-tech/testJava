@@ -1,11 +1,5 @@
 package test.java.util;
-/*
- *
- *@Data 17.10.2021
- *@autor Fedorov Yuri
- *@project testJava
- *
- */
+
 
 import main.java.com.fedorov.dto.Package;
 
